@@ -1,18 +1,14 @@
 #ifndef MATERIA_H
 #define MATERIA_H
 
-#include "lista.h"
-
-typedef struct {
+typedef struct Materia {
     int id;
     char nombre[100];
-    char estado[20]; // "inscripto" o "rendido"
+    int creditos;
+    float nota; // Nota de la materia
 } Materia;
 
-NodoMateria* crearListaMaterias();
-NodoMateria* agregarMateria(NodoMateria *lista, Materia materia);
-NodoMateria* modificarMateria(NodoMateria *lista, int id, Materia nuevaMateria);
-NodoMateria* eliminarMateria(NodoMateria *lista, int id);
-void listarMaterias(NodoMateria *lista);
+void inicializarMateria(Materia *materia, int id, const char *nombre, int creditos);
+void imprimirMateria(const Materia *materia);
 
 #endif // MATERIA_H

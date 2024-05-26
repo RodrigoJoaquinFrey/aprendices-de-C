@@ -1,57 +1,22 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "materia.h"
+#include <stdio.h>
+#include <string.h>
 
-// Funciones de Materias
-
-NodoMateria* crearListaMaterias() {
-    return NULL;
+void inicializarMateria(Materia *materia, int id, const char *nombre, int creditos) {
+    materia->id = id;
+    strncpy(materia->nombre, nombre, sizeof(materia->nombre) - 1);
+    materia->nombre[sizeof(materia->nombre) - 1] = '\0'; // Asegurar la terminación nula
+    materia->creditos = creditos;
+    materia->nota = -1.0; // Inicializar con una nota inválida indicando que no ha rendido
 }
 
-NodoMateria* agregarMateria(NodoMateria *lista, Materia materia) {
-    NodoMateria *nuevoNodo = (NodoMateria *)malloc(sizeof(NodoMateria));
-    nuevoNodo->materia = materia;
-    nuevoNodo->proximo = lista;
-    return nuevoNodo;
-}
-
-NodoMateria* modificarMateria(NodoMateria *lista, int id, Materia nuevaMateria) {
-    NodoMateria *cursor = lista;
-    while (cursor != NULL) {
-        if (cursor->materia.id == id) {
-            cursor->materia = nuevaMateria;
-            return lista;
-        }
-        cursor = cursor->proximo;
-    }
-    return lista; // No se encontró la materia
-}
-
-NodoMateria* eliminarMateria(NodoMateria *lista, int id) {
-    NodoMateria *cursor = lista;
-    NodoMateria *anterior = NULL;
-    while (cursor != NULL) {
-        if (cursor->materia.id == id) {
-            if (anterior == NULL) {
-                lista = cursor->proximo;
-            } else {
-                anterior->proximo = cursor->proximo;
-            }
-            free(cursor);
-            return lista;
-        }
-        anterior = cursor;
-        cursor = cursor->proximo;
-    }
-    return lista; // No se encontró la materia
-}
-
-void listarMaterias(NodoMateria *lista) {
-    NodoMateria *cursor = lista;
-    while (cursor != NULL) {
-        printf("ID: %d, Nombre: %s, Estado: %s\n",
-               cursor->materia.id, cursor->materia.nombre, cursor->materia.estado);
-        cursor = cursor->proximo;
+void imprimirMateria(const Materia *materia) {
+    printf("ID: %d\n", materia->id);
+    printf("Nombre: %s\n", materia->nombre);
+    printf("Créditos: %d\n", materia->creditos);
+    if (materia->nota >= 0) {
+        printf("Nota: %.2f\n", materia->nota);
+    } else {
+        printf("No ha rendido esta materia.\n");
     }
 }

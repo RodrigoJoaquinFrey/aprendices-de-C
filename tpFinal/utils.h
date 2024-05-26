@@ -1,6 +1,6 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-int calcularEdad(char *fechaNacimiento);
+void limpiarBuffer();
 
 #endif // UTILS_H

@@ -1,29 +1,20 @@
 #ifndef LISTA_H
 #define LISTA_H
 
-typedef struct structMateria {
-    int id;
-    char nombre[100];
-    int nota;          // Nota obtenida al rendir la materia
-    int rendido;       // 0 si no se ha rendido, 1 si ya se rindió
-    struct structMateria *proximo;
-} Materia;
+typedef struct Nodo {
+    void *data;
+    struct Nodo *proximo;
+} Nodo;
 
-typedef struct NodoMateria {
-    Materia materia;
-    struct NodoMateria *proximo;
-} NodoMateria;
+typedef struct {
+    Nodo *cabeza;
+    int largo;
+} Lista;
 
-typedef struct structEstudiante {
-    int id;
-    char nombre[100];
-    char fechaNacimiento[11]; // Formato: "YYYY-MM-DD"
-    NodoMateria *materias;
-} Estudiante;
-
-typedef struct NodoEstudiante {
-    Estudiante estudiante;
-    struct NodoEstudiante *proximo;
-} NodoEstudiante;
+Lista *crearLista();
+void agregar(Lista *lista, void *data);
+int obtenerLargoLista(const Lista *lista);
+void *obtenerElementoLista(const Lista *lista, int indice);
+void eliminarElementoLista(Lista *lista, int indice);
 
 #endif // LISTA_H

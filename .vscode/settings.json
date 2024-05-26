@@ -1,0 +1,10 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "stdlib.h": "c",
+        "materia.h": "c",
+        "estudiante.h": "c",
+        "lista.h": "c",
+        "utils.h": "c"
+    }
+}
