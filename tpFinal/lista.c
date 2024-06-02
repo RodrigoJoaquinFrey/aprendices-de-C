@@ -1,18 +1,17 @@
 #include "lista.h"
 #include <stdlib.h>
 
-Lista *crearLista() {
-    Lista *lista = (Lista *)malloc(sizeof(Lista));
+Lista* crearLista() {
+    Lista *lista = (Lista*)malloc(sizeof(Lista));
     lista->cabeza = NULL;
-    lista->largo = 0;
+    lista->longitud = 0;
     return lista;
 }
 
 void agregar(Lista *lista, void *data) {
-    Nodo *nuevoNodo = (Nodo *)malloc(sizeof(Nodo));
+    Nodo *nuevoNodo = (Nodo*)malloc(sizeof(Nodo));
     nuevoNodo->data = data;
     nuevoNodo->proximo = NULL;
-
     if (lista->cabeza == NULL) {
         lista->cabeza = nuevoNodo;
     } else {
@@ -22,48 +21,36 @@ void agregar(Lista *lista, void *data) {
         }
         cursor->proximo = nuevoNodo;
     }
-    lista->largo++;
+    lista->longitud++;
 }
 
-int obtenerLargoLista(const Lista *lista) {
-    return lista->largo;
-}
-
-void *obtenerElementoLista(const Lista *lista, int indice) {
-    Nodo *cursor = lista->cabeza;
-    int contador = 0;
-
-    while (cursor != NULL) {
-        if (contador == indice) {
-            return cursor->data;
-        }
-        cursor = cursor->proximo;
-        contador++;
-    }
-
-    return NULL;
-}
-
-void eliminarElementoLista(Lista *lista, int indice) {
-    if (indice < 0 || indice >= lista->largo) {
-        return;
-    }
-
-    Nodo *anterior = NULL;
-    Nodo *actual = lista->cabeza;
-
-    for (int i = 0; i < indice; i++) {
-        anterior = actual;
-        actual = actual->proximo;
-    }
-
-    if (anterior == NULL) {
-        lista->cabeza = actual->proximo;
+void eliminarNodo(Lista *lista, int index) {
+    if (index < 0 || index >= lista->longitud) return;
+    Nodo *temp;
+    if (index == 0) {
+        temp = lista->cabeza;
+        lista->cabeza = lista->cabeza->proximo;
     } else {
-        anterior->proximo = actual->proximo;
+        Nodo *cursor = lista->cabeza;
+        for (int i = 0; i < index - 1; i++) {
+            cursor = cursor->proximo;
+        }
+        temp = cursor->proximo;
+        cursor->proximo = temp->proximo;
     }
+    free(temp);
+    lista->longitud--;
+}
 
-    free(actual->data);
-    free(actual);
-    lista->largo--;
+void* obtener(Lista *lista, int index) {
+    if (index < 0 || index >= lista->longitud) return NULL;
+    Nodo *cursor = lista->cabeza;
+    for (int i = 0; i < index; i++) {
+        cursor = cursor->proximo;
+    }
+    return cursor->data;
+}
+
+int obtenerLongitud(Lista *lista) {
+    return lista->longitud;
 }

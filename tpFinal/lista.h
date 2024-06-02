@@ -8,13 +8,13 @@ typedef struct Nodo {
 
 typedef struct {
     Nodo *cabeza;
-    int largo;
+    int longitud;
 } Lista;
 
-Lista *crearLista();
+Lista* crearLista();
 void agregar(Lista *lista, void *data);
-int obtenerLargoLista(const Lista *lista);
-void *obtenerElementoLista(const Lista *lista, int indice);
-void eliminarElementoLista(Lista *lista, int indice);
+void eliminarNodo(Lista *lista, int index);
+void* obtener(Lista *lista, int index);
+int obtenerLongitud(Lista *lista);
 
 #endif // LISTA_H
