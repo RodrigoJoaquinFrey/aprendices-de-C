@@ -6,6 +6,24 @@ Estudiante* crearEstudiante(int id, const char *nombre, const char *fechaNacimie
         printf("Error: La edad del estudiante debe estar entre 6 y 100 años. Edad calculada: %d\n", edad);
         return NULL;
     }
+
+    Estudiante* buscarEstudiantePorID(int id) {
+    Nodo *nodo = lista_de_estudiantes->cabeza; // Suponiendo que lista_de_estudiantes es una variable global que almacena la lista de estudiantes
+    while (nodo != NULL) {
+        Estudiante *estudiante = (Estudiante*)nodo->data;
+        if (estudiante->id == id) {
+            return estudiante;
+        }
+        nodo = nodo->proximo;
+    }
+    return NULL; // Retorna NULL si no se encuentra ningún estudiante con el ID especificado
+}
+Estudiante* crearEstudiante(int id, const char *nombre, const char *apellido, const char *fechaNacimiento) {
+    if (buscarEstudiantePorID(id) != NULL) {
+        printf("Error: Ya existe un estudiante con el ID %d.\n", id);
+        return NULL;
+    }
+
     Estudiante *estudiante = (Estudiante*)malloc(sizeof(Estudiante));
     estudiante->id = id;
     strncpy(estudiante->nombre, nombre, sizeof(estudiante->nombre) - 1);
