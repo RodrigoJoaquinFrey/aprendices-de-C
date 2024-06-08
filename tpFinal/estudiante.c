@@ -1,6 +1,11 @@
 #include "estudiante.h"
 
 Estudiante* crearEstudiante(int id, const char *nombre, const char *fechaNacimiento) {
+    int edad = calcularEdad(fechaNacimiento);
+    if (edad < 6 || edad > 100) {
+        printf("Error: La edad del estudiante debe estar entre 6 y 100 años. Edad calculada: %d\n", edad);
+        return NULL;
+    }
     Estudiante *estudiante = (Estudiante*)malloc(sizeof(Estudiante));
     estudiante->id = id;
     strncpy(estudiante->nombre, nombre, sizeof(estudiante->nombre) - 1);
@@ -31,6 +36,10 @@ void eliminarEstudiante(Estudiante *estudiante) {
 }
 
 void imprimirEstudiante(const Estudiante *estudiante) {
+    if (estudiante == NULL) {
+        printf("Error: El estudiante no existe.\n");
+        return;
+    }
     printf("ID: %d\n", estudiante->id);
     printf("Nombre: %s\n", estudiante->nombre);
     printf("Fecha de Nacimiento: %s\n", estudiante->fechaNacimiento);
@@ -44,13 +53,15 @@ void imprimirEstudiante(const Estudiante *estudiante) {
 }
 
 int calcularEdad(const char *fechaNacimiento) {
-    int anio, mes, dia;
-    sscanf(fechaNacimiento, "%d-%d-%d", &anio, &mes, &dia);
+     int dia, mes, anio;
+    sscanf(fechaNacimiento, "%d/%d/%d", &dia, &mes, &anio); // Cambiado el formato de entrada a "DD/MM/YYYY"
+    
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
     int anioActual = tm.tm_year + 1900;
     int mesActual = tm.tm_mon + 1;
     int diaActual = tm.tm_mday;
+    
     int edad = anioActual - anio;
     if (mes > mesActual || (mes == mesActual && dia > diaActual)) {
         edad--;
@@ -63,6 +74,10 @@ void agregarMateriaEstudiante(Estudiante *estudiante, Materia *materia) {
 }
 
 void rendirMateria(Estudiante *estudiante, int idMateria, float nota) {
+    if (nota < 1.0 || nota > 10.0) {
+        printf("Error: La nota debe estar entre 1 y 10.\n");
+        return;
+    }
     Nodo *nodo = estudiante->materias->cabeza;
     while (nodo != NULL) {
         Materia *materia = (Materia*)nodo->data;
