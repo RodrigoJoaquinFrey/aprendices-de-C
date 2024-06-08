@@ -101,12 +101,17 @@ int main() {
                 int edadMax;
                 scanf("%d", &edadMax);
                 limpiarBuffer();
+                int encontrado = 0;
                 for (int i = 0; i < obtenerLongitud(listaEstudiantes); i++) {
                     Estudiante *est = obtener(listaEstudiantes, i);
                     int edad = calcularEdad(est->fechaNacimiento);
                     if (edad >= edadMin && edad <= edadMax) {
                         imprimirEstudiante(est);
+                        encontrado = 1;
                     }
+                }
+                if (!encontrado) {
+                    printf("No se encontraron estudiantes en ese rango de edad.\n");
                 }
                 break;
             case 7:
