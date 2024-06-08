@@ -17,6 +17,9 @@ void mostrarMenu() {
     printf("7. Dar de alta una materia\n");
     printf("8. Anotarse en una materia\n");
     printf("9. Rendir una materia\n");
+    /*printf("10. Ordenar estudiantes\n");*/
+    printf("11. Crear estudiantes y materias de forma aleatoria\n");
+    printf("12. Ver promedio de un estudiante\n");
     printf("0. Salir\n");
     printf("Seleccione una opcion: ");
 }
@@ -24,7 +27,7 @@ void mostrarMenu() {
 int main() {
     Lista *listaEstudiantes = crearLista();
     Lista *listaMaterias = crearLista();
-    int opcion, id, idMateria;
+    int opcion, id, idMateria, cantidadEstudiantes, cantidadMaterias, orden;
     char nombre[50], fechaNacimiento[11];
     float nota;
 
@@ -155,6 +158,41 @@ int main() {
                     Estudiante *est = obtener(listaEstudiantes, i);
                     if (est->id == id) {
                         rendirMateria(est, idMateria, nota);
+                        break;
+                    }
+                }
+                break;
+            /*case 10:
+                printf("Ingrese 1 para ordenar por nombre:\n2 para ordenar por fecha de nacimiento:\3 para ordenar por ID: ");
+                scanf("%d", &orden);
+                limpiarBuffer();
+                if (orden == 1) {
+                    ordenarEstudiantes(listaEstudiantes, compararEstudiantesPorNombre);
+                } else if (orden == 2){
+                            ordenarEstudiantes(listaEstudiantes, compararEstudiantesPorFechaNacimiento);
+                }else {
+                    ordenarEstudiantes(listaEstudiantes, compararEstudiantesPorID);
+                }
+                break;*/
+            case 11:
+                printf("Ingrese cantidad de estudiantes: ");
+                scanf("%d", &cantidadEstudiantes);
+                limpiarBuffer();
+                printf("Ingrese cantidad de materias: ");
+                scanf("%d", &cantidadMaterias);
+                limpiarBuffer();
+                generarEstudiantesYMaterias(listaEstudiantes, cantidadEstudiantes, cantidadMaterias);
+                break;
+            case 12:
+                listarEstudiantes(listaEstudiantes);
+                printf("Ingrese ID del estudiante a promediar: ");
+                scanf("%d", &id);
+                limpiarBuffer();
+                
+                for (int i = 0; i < obtenerLongitud(listaEstudiantes); i++) {
+                    Estudiante *est = obtener(listaEstudiantes, i);
+                    if (est->id == id) {
+                        printf("La nota promedio del estudiante %s es : %f\n", est->nombre, promedioDelEstudiante(est));
                         break;
                     }
                 }

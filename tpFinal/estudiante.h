@@ -23,5 +23,10 @@ int calcularEdad(const char *fechaNacimiento);
 void agregarMateriaEstudiante(Estudiante *estudiante, Materia *materia);
 void rendirMateria(Estudiante *estudiante, int idMateria, float nota);
 void listarEstudiantes(const Lista *lista);
+float promedioDelEstudiante(Estudiante *estudiante);
+void generarEstudiantesYMaterias(Lista *listaEstudiantes, int cantidadEstudiantes, int cantidadMaterias);
+int compararEstudiantesPorNombre(const void *a, const void *b);
+int compararEstudiantesPorFechaNacimiento(const void *a, const void *b);
+int compararEstudiantesPorID(const void *a, const void *b);
 
 #endif // ESTUDIANTE_H
