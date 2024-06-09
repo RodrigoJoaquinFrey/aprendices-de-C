@@ -15,4 +15,5 @@ void imprimirMateria(const Materia *materia) {
     } else {
         printf("No ha rendido esta materia.\n");
     }
+    printf("-------------------------------------------\n");
 }

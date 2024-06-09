@@ -28,6 +28,5 @@ void generarEstudiantesYMaterias(Lista *listaEstudiantes, int cantidadEstudiante
 void ordenarEstudiantes(Lista *lista, int (*comparar)(const void *, const void *));
 int compararEstudiantesPorNombre(const void *a, const void *b);
 int compararEstudiantesPorFechaNacimiento(const void *a, const void *b);
-int compararEstudiantesPorID(const void *a, const void *b);
 
 #endif // ESTUDIANTE_H

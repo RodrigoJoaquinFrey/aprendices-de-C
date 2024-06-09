@@ -52,6 +52,7 @@ void imprimirEstudiante(const Estudiante *estudiante) {
         imprimirMateria((Materia*)nodo->data);
         nodo = nodo->proximo;
     }
+    printf("-------------------------------------------\n");
 }
 
 int calcularEdad(const char *fechaNacimiento) {
@@ -138,23 +139,16 @@ void ordenarEstudiantes(Lista *lista, int (*comparar)(const void *, const void *
 
 // Función de comparación para ordenar estudiantes por nombre
 int compararEstudiantesPorNombre(const void *a, const void *b) {
-    Estudiante *estudianteA = (Estudiante *)a;
-    Estudiante *estudianteB = (Estudiante *)b;
+    Estudiante *estudianteA = *(const Estudiante **)a;
+    Estudiante *estudianteB = *(const Estudiante **)b;
     return strcmp(estudianteA->nombre, estudianteB->nombre);
 }
 
 // Función de comparación para ordenar estudiantes por fecha de nacimiento
 int compararEstudiantesPorFechaNacimiento(const void *a, const void *b) {
-    Estudiante *estudianteA = (Estudiante *)a;
-    Estudiante *estudianteB = (Estudiante *)b;
+    Estudiante *estudianteA = *(const Estudiante **)a;
+    Estudiante *estudianteB = *(const Estudiante **)b;
     return strcmp(estudianteA->fechaNacimiento, estudianteB->fechaNacimiento);
-}
-
-// Función de comparación para ordenar estudiantes por ID
-int compararEstudiantesPorID(const void *a, const void *b) {
-    Estudiante *estudianteA = (Estudiante *)a;
-    Estudiante *estudianteB = (Estudiante *)b;
-    return estudianteA->id - estudianteB->id;
 }
 
 void generarEstudiantesYMaterias(Lista *listaEstudiantes, int cantidadEstudiantes, int cantidadMaterias) {

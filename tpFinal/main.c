@@ -23,6 +23,7 @@ void mostrarMenu()
     printf("11. Crear estudiantes y materias de forma aleatoria\n");
     printf("12. Ver promedio de un estudiante\n");
     printf("0. Salir\n");
+    printf("-------------------------------------------\n");
     printf("Seleccione una opcion: ");
 }
 
@@ -184,7 +185,6 @@ int main()
         case 10:
             printf("Ingrese 1 para ordenar por nombre\n");
             printf("Ingrese 2 para ordenar por fecha de nacimiento\n");
-            printf("Ingrese 3 para ordenar por ID\n");
             printf("Opcion: ");
             int opcionOrdenamiento;
             scanf("%d", &opcionOrdenamiento);
@@ -199,10 +199,6 @@ int main()
                 case 2:
                     ordenarEstudiantes(listaEstudiantes, compararEstudiantesPorFechaNacimiento);
                     printf("Estudiantes ordenados por fecha de nacimiento.\n");
-                    break;
-                case 3:
-                    ordenarEstudiantes(listaEstudiantes, compararEstudiantesPorID);
-                    printf("Estudiantes ordenados por ID.\n");
                     break;
                 default:
                     printf("Opcion de ordenamiento no valida.\n");
