@@ -25,6 +25,7 @@ void rendirMateria(Estudiante *estudiante, int idMateria, float nota);
 void listarEstudiantes(const Lista *lista);
 float promedioDelEstudiante(Estudiante *estudiante);
 void generarEstudiantesYMaterias(Lista *listaEstudiantes, int cantidadEstudiantes, int cantidadMaterias);
+void ordenarEstudiantes(Lista *lista, int (*comparar)(const void *, const void *));
 int compararEstudiantesPorNombre(const void *a, const void *b);
 int compararEstudiantesPorFechaNacimiento(const void *a, const void *b);
 int compararEstudiantesPorID(const void *a, const void *b);

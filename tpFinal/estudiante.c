@@ -79,10 +79,10 @@ void rendirMateria(Estudiante *estudiante, int idMateria, float nota) {
         Materia *materia = (Materia*)nodo->data;
         if (materia->id == idMateria) {
             if (materia->nota >= 0) {
-                printf("Ya se rindió esta materia y su nota es: %.2f\n", materia->nota);
+                printf("Ya se rindio esta materia y su nota es: %.2f\n", materia->nota);
             } else {
                 materia->nota = nota;
-                printf("Materia rendida con éxito. Nota: %.2f\n", materia->nota);
+                printf("Materia rendida con exito. Nota: %.2f\n", materia->nota);
             }
             return;
         }
